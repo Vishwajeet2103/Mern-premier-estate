@@ -123,6 +123,7 @@ export default function Profile() {
 
   const handleShowListings = async () => {
     if (!currentUser || !currentUser.token) {
+      console.log("Current User:", currentUser); // Check what currentUser contains
       alert("You must be signed in to view listings.");
       return;
     }
