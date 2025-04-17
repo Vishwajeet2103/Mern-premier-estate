@@ -122,13 +122,12 @@ export default function Profile() {
   };
 
   const handleShowListings = async () => {
+    if (!currentUser || !currentUser.token) {
+      alert("You must be signed in to view listings.");
+      return;
+    }
     try {
       setShowListingsError(false);
-      if (!currentUser || !currentUser.token) {
-        console.log('No token available or user not signed in');
-        // Handle the case where no user is signed in or the token is missing
-        return;
-      }
       const res = await fetch(`${BASE_URL}/api/user/listings/${currentUser._id}`, {
         method: 'GET',
         credentials: 'include', // ✅ still needed for sending cookies
@@ -244,7 +243,7 @@ export default function Profile() {
 
       {error && <p className='text-red-700 mt-5'>{error}</p>}
       {updateSuccess && <p className='text-green-700 mt-5'>Profile updated successfully!</p>}
-
+          
       <button onClick={handleShowListings} className='text-green-700 w-full mt-5'>
         Show Listings
       </button>
