@@ -23,7 +23,12 @@ const __dirname = path.resolve();
 
 const app = express();
 
-app.use(cors());
+app.use(
+  cors({
+    origin: 'https://mern-premier-estate-frontend.onrender.com', // ✅ your frontend URL
+    credentials: true, // ✅ allow cookies/headers
+  })
+);
 app.use(express.json());
 app.use(cookieParser());
 
