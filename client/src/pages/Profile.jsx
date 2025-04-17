@@ -124,9 +124,10 @@ export default function Profile() {
   const handleShowListings = async () => {
     try {
       setShowListingsError(false);
-      const res = await fetch(`${BASE_URL}/api/user/listings/${currentUser._id}`, {
-        credentials: 'include',
-      });
+     const res = await fetch(`${BASE_URL}/api/user/listings/${currentUser._id}`, {
+     method: 'GET',
+     credentials: 'include', // ✅ sends cookies (token)
+     });
       const data = await res.json();
       if (data.success === false) {
         setShowListingsError(true);
