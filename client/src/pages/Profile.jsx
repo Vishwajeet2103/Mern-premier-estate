@@ -127,10 +127,7 @@ export default function Profile() {
       const res = await fetch(`${BASE_URL}/api/user/listings/${currentUser._id}`, {
         method: 'GET',
         credentials: 'include', // ✅ still needed for sending cookies
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${currentUser.token}`, // ✅ sending JWT token
-        },
+       
       });
       
       const data = await res.json();
